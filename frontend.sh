@@ -33,5 +33,5 @@ VALIDATE $? "Installing Nginx"
 systemctl enable nginx &>>$LOGFILE
 VALIDATE $? "Enabling Nginx"
 
-systemctl start nginx 
-VALIDATE $? "Start Nginx"
+systemctl status nginx 
+VALIDATE $? "Status Nginx"
