@@ -27,5 +27,8 @@ else
 echo "You are super User"
 fi
 
-dnf install nginx -y 
-VALIDATE $? "Installing nginx"
+dnf install nginx -y &>>$LOGFILE
+VALIDATE $? "Installing nginx" 
+
+systemctl enable nginx &>>$LOGFILE
+VALIDATE $? "Enabling nginx" 
