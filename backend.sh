@@ -56,3 +56,6 @@ unzip /tmp/backend.zip
 VALIDATE $? "Extracting backend code"
 
 npm install
+VALIDATE $? "install dependencies"
+
+
