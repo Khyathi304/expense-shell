@@ -33,5 +33,8 @@ VALIDATE $? "Installing nginx"
 systemctl enable nginx &>>$LOGFILE
 VALIDATE $? "Enabling nginx" 
 
-systemctl start nginx
-VALIDATE $? "starting Nginx" 
+systemctl start nginx &>>$LOGFILE
+VALIDATE $? "starting nginx"
+
+rm -rf /usr/share/nginx/html/*
+VALIDATE $? "Removing default nginx content" &>>$LOGFILE
