@@ -42,5 +42,5 @@ then
 useradd expense &>>$LOGFILE
 VALIDATE $? "Adding User "
 else
-echo "User already added $Y Skip $N "
+echo -e "User already added $Y Skip $N "
 fi
