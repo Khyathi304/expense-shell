@@ -26,3 +26,6 @@ exit 1
 else
 echo "You are super User"
 fi
+
+dnf install nginx -y 
+VALIDATE $? "Installing nginx"
