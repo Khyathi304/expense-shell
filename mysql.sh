@@ -39,6 +39,12 @@ VALIDATE $? "Start MySql server"
 #mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOGFILE
 #VALIDATE $? "Setting up root password"
 
+mysql -h db.daws304.online -uroot -pExpenseApp@1 -e 'SHOW DATABASES;' &>>$LOGFILE
+if [ $? -ne 0 ]
+then
 mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOGFILE
-VALIDATE $? "Setting up root password"
+VALIDATE $? "mysql is installing::"
+else
+echo -e "mysql is already installed please skip.. $Y SKIPPING $N"
+fi
 
