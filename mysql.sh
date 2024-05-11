@@ -10,6 +10,8 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
+echo "Please enter DB password:"
+read -s mysql_root_password
 VALIDATE(){
     if [ $1 -ne 0 ]
     then
@@ -39,10 +41,10 @@ VALIDATE $? "Start MySql server"
 #mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOGFILE
 #VALIDATE $? "Setting up root password"
 
-mysql -h db.daws304.online -uroot -pExpenseApp@1 -e 'SHOW DATABASES;' &>>$LOGFILE
+mysql -h db.daws304.online -uroot -p${mysql_root_password} -e 'SHOW DATABASES;' &>>$LOGFILE
 if [ $? -ne 0 ]
 then
-mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOGFILE
+mysql_secure_installation --set-root-pass ${mysql_root_password} &>>$LOGFILE
 VALIDATE $? "mysql is installing::"
 else
 echo -e "mysql is already installed please skip.. $Y SKIPPING $N"
