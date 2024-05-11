@@ -41,3 +41,7 @@ VALIDATE $? "Removing default nginx content"
 
 curl -o /tmp/frontend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip &>>$LOGFILE
 VALIDATE $? "Downloading content"
+
+cd /usr/share/nginx/html
+unzip /tmp/frontend.zip &>>$LOGFILE
+VALIDATE $? "Extracting content"
