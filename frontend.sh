@@ -49,5 +49,8 @@ VALIDATE $? "Extracting content"
 cp /home/ec2-user/expense-shell/expense.conf /etc/nginx/default.d/expense.conf
 VALIDATE $? "Copying content"
 
+systemctl restart nginx
+VALIDATE $? "Restart nginx"
+
 
 
