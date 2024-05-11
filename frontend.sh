@@ -27,23 +27,27 @@ else
 echo "You are super User"
 fi
 
-dnf install nginx -y 
+dnf install nginx -y &>>$LOGFILE
 VALIDATE $? "Installing Nginx"
 
-systemctl enable nginx
+systemctl enable nginx &>>$LOGFILE
 VALIDATE $? "Enabling Nginx"
 
-systemctl start nginx
+systemctl start nginx &>>$LOGFILE
 VALIDATE $? "Start Nginx"
 
-rm -rf /usr/share/nginx/html/*
+rm -rf /usr/share/nginx/html/* &>>$LOGFILE
 VALIDATE $? "Removing the content"
 
-curl -o /tmp/frontend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
+curl -o /tmp/frontend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip &>>$LOGFILE
 VALIDATE $? "Downloading the content"
 
 cd /usr/share/nginx/html
-unzip /tmp/frontend.zip
+unzip /tmp/frontend.zip &>>$LOGFILE
 VALIDATE $? "Extracting Content"
 
-cp  /etc/nginx/default.d/expense.conf
+cp /home/ec2-user/expense-shell/expense.conf /etc/nginx/default.d/expense.conf &>>$LOGFILE
+VALIDATE $? "Copy the content"
+
+systemctl restart nginx &>>$LOGFILE
+VALIDATE $? "Restarting nginx"
