@@ -33,21 +33,3 @@ VALIDATE $? "Installing Nginx"
 systemctl enable nginx &>>$LOGFILE
 VALIDATE $? "Enabling Nginx"
 
-systemctl start nginx  
-VALIDATE $? "Start Nginx"
-
-rm -rf /usr/share/nginx/html/* &>>$LOGFILE
-VALIDATE $? "Removing the content"
-
-curl -o /tmp/frontend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip &>>$LOGFILE
-VALIDATE $? "Downloading the content"
-
-cd /usr/share/nginx/html
-unzip /tmp/frontend.zip &>>$LOGFILE
-VALIDATE $? "Extracting Content"
-
-cp /home/ec2-user/expense-shell/expense.conf /etc/nginx/default.d/expense.conf &>>$LOGFILE
-VALIDATE $? "Copy the content"
-
-systemctl restart nginx 
-VALIDATE $? "Restarting nginx"
